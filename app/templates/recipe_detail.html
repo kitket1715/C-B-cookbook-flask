@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-danger">{{ recipe.title }}</h2>
+<img src="{{ recipe.image_url or url_for('static', filename='images/default_recipe.jpg') }}" class="img-fluid mb-3" alt="{{ recipe.title }}">
+<p><strong>Cuisine:</strong> {{ recipe.cuisine }}</p>
+<h4>Ingredients:</h4>
+<p>{{ recipe.ingredients }}</p>
+<h4>Steps:</h4>
+<p>{{ recipe.steps }}</p>
+<a href="{{ url_for('main.edit_recipe', recipe_id=recipe.id) }}" class="btn btn-warning">Edit</a>
+<form action="{{ url_for('main.delete_recipe', recipe_id=recipe.id) }}" method="post" class="d-inline">
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+<a href="{{ url_for('main.recipe_list') }}" class="btn btn-secondary mt-3">Back</a>
+{% endblock %}

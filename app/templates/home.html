@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center p-5 bg-light border rounded shadow">
+    <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Online Cookbook Logo" height="100" class="mb-3">
+    <h1 class="display-4 text-danger">Welcome to the Online Cookbook</h1>
+    <p class="lead">Share your passion for cooking. Explore recipes. Discover tools that make food extraordinary.</p>
+    <a href="{{ url_for('main.recipe_list') }}" class="btn btn-primary btn-lg m-2">Browse Recipes</a>
+    <a href="{{ url_for('main.add_recipe') }}" class="btn btn-warning btn-lg m-2">Add a Recipe</a>
+</div>
+
+<div class="text-center mt-5">
+    <h2 class="text-gold">Featured Kitchen Tools</h2>
+    <p class="mb-4">Upgrade your culinary game with our trusted tools.</p>
+    <a href="{{ url_for('main.tools') }}" class="btn btn-outline-dark">Explore Tools</a>
+</div>
+
+<div class="mt-5">
+    <h2 class="text-danger text-center">Featured Recipes</h2>
+    <div class="row">
+        {% for recipe in recipes if recipe.is_featured %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 position-relative">
+                {% if recipe.image_url %}
+                    <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}">
+                {% else %}
+                    <img src="{{ url_for('static', filename='images/default_recipe.jpg') }}" class="card-img-top" alt="Default image">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.title }}</h5>
+                    <p class="card-text"><strong>Cuisine:</strong> {{ recipe.cuisine }}</p>
+                    <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Featured</span>
+                    <a href="{{ url_for('main.recipe_detail', recipe_id=recipe.id) }}" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
