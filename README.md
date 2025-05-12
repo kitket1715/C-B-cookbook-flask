@@ -89,15 +89,6 @@ heroku run flask db upgrade
 - Accessible forms and feedback
 - Fallback images ensure visual consistency
 
-## 📸 Screenshots
-
-Add screenshots of:
-- Home page
-- Add recipe form
-- Recipe list and detail
-- Dashboard
-- Tools page
-
 ## 📥 Dashboard Export Feature
 
 - From the dashboard, users can click a button to download statistics
